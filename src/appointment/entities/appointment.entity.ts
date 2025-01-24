@@ -61,10 +61,10 @@ export class Appointment {
   date: Date;
 
   @ManyToOne(() => Barber, (barber) => barber.appointments)
-  @JoinColumn()
+  @JoinColumn({ name: 'barberId' })
   barber: Barber;
 
   @ManyToOne(() => User, (user) => user.appointments)
-  @JoinColumn()
+  @JoinColumn({ name: 'userId' })
   user: User;
 }
