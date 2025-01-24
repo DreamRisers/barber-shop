@@ -38,7 +38,7 @@ export class Appointment {
   client_name: string;
 
   @Column()
-  client_phone: number;
+  client_phone: string;
 
   @Column({
     type: 'enum',
