@@ -27,7 +27,11 @@ export class User {
   @Column()
   profileImg: string;
 
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: Role,
+    default: Role.CLIENT,
+  })
   role: Role;
 
   @OneToMany(() => Appointment, (appointment) => appointment.user)
