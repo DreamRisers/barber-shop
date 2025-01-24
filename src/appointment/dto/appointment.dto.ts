@@ -1,17 +1,20 @@
-import { AppointmentStatus, PaymentMethod } from "../entities/appointment.entity";
+import {
+  AppointmentStatus,
+  PaymentMethod,
+} from '../entities/appointment.entity';
 
 export class CreateAppointmentDTO {
-    price: number;
+  price: number;
 
-    services: string;
+  services: string;
 
-    client_name: string;
+  client_name: string;
 
-    client_phone: number;
+  client_phone: string;
 
-    status: AppointmentStatus;
+  status: AppointmentStatus;
 
-    paymentMethod: PaymentMethod;
+  paymentMethod: PaymentMethod;
 
-    date: Date;
+  date: Date;
 }
