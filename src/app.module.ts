@@ -5,10 +5,18 @@ import { UserModule } from './user/user.module';
 import { BarberModule } from './barber/barber.module';
 import { ClientModule } from './client/client.module';
 import { ServicesModule } from './services/services.module';
-import { SalesModule } from './sales/sales.module';
+import { SalesModule } from './appointments/appointment.module';
+import { AppointmentModule } from './appointment/appointment.module';
 
 @Module({
-  imports: [UserModule, BarberModule, ClientModule, ServicesModule, SalesModule],
+  imports: [
+    UserModule,
+    BarberModule,
+    ClientModule,
+    ServicesModule,
+    SalesModule,
+    AppointmentModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
