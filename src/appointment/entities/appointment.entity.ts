@@ -18,7 +18,6 @@ export class Appointment {
     id: string;
 
     @Column({
-        type: 'number',
         nullable: false
     })
     price: number;
