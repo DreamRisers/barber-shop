@@ -9,8 +9,13 @@ export class AppointmentService {
         @InjectRepository(Appointment) private readonly appointmentRepository: Repository<Appointment>,
     ) {}
 
+    async createAppointment(appointmentData) {
+        const createdAppointment = this.appointmentRepository.create(appointmentData);
+        return await this.appointmentRepository.save(createdAppointment)
+    }
+
     async getAppointments() {
-        const appointments = await this.appointmentRepository.find();
+        const appointments = await this.appointmentRepository.find({ relations: ['barber'] });
         return appointments;
     }
 

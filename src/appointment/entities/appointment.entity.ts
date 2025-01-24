@@ -8,13 +8,13 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-enum AppointmentStatus {
+export enum AppointmentStatus {
   PENDING = 'pending',
   COMPLETED = 'completed',
   CANCELLED = 'cancelled',
 }
 
-enum PaymentMethod {
+export enum PaymentMethod {
   CASH = 'cash',
   TRANSFER = 'transfer',
 }
