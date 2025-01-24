@@ -1,5 +1,4 @@
 import { Barber } from 'src/barber/entities/barber.entity';
-import { Client } from 'src/client/entities/client.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -31,6 +30,17 @@ export class Appointment {
   price: number;
 
   @Column({
+    nullable: true,
+  })
+  services: string;
+
+  @Column()
+  client_name: string;
+
+  @Column()
+  client_phone: number;
+
+  @Column({
     type: 'enum',
     enum: AppointmentStatus,
     default: AppointmentStatus.PENDING,
@@ -49,9 +59,6 @@ export class Appointment {
     nullable: false,
   })
   date: Date;
-
-  @ManyToOne(() => Client, (client) => client.appointments)
-  client: Client;
 
   @ManyToOne(() => Barber, (barber) => barber.appointments)
   @JoinColumn()
