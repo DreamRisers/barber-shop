@@ -4,8 +4,6 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { BarberModule } from './barber/barber.module';
 import { ClientModule } from './client/client.module';
-import { ServicesModule } from './services/services.module';
-import { SalesModule } from './appointments/appointment.module';
 import { AppointmentModule } from './appointment/appointment.module';
 
 @Module({
@@ -13,8 +11,6 @@ import { AppointmentModule } from './appointment/appointment.module';
     UserModule,
     BarberModule,
     ClientModule,
-    ServicesModule,
-    SalesModule,
     AppointmentModule,
   ],
   controllers: [AppController],
