@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity({ name: 'barbers' })
+@Entity({ name: 'barber' })
 export class Barber {
   @PrimaryGeneratedColumn('uuid')
   barberId: string;
