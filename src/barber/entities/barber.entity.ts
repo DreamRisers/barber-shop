@@ -1,8 +1,10 @@
+import { Appointment } from 'src/appointment/entities/appointment.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -28,5 +30,7 @@ export class Barber {
   @JoinColumn()
   user: User;
 
-  //Agregar relación con Turnos.
+  @OneToMany(() => Appointment, (appointment) => appointment.barber)
+  @JoinColumn()
+  appointments: Appointment[];
 }

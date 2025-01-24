@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Appointment } from 'src/appointment/entities/appointment.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export enum Role {
   ADMIN = 'admin',
@@ -23,5 +30,7 @@ export class User {
   @Column()
   role: Role;
 
-  //Agregar relación con Turnos.
+  @OneToMany(() => Appointment, (appointment) => appointment.user)
+  @JoinColumn()
+  appointments: Appointment[];
 }
