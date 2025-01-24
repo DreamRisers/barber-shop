@@ -7,9 +7,7 @@ export class Client {
     id: string;
 
     @Column({
-        type: 'number',
         nullable: true,
-        length: 13
     })
     phone: number;
 
