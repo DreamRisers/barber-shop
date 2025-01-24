@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseUUIDPipe, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Post } from '@nestjs/common';
 import { AppointmentService } from './appointment.service';
 import { CreateAppointmentDTO } from './dto/appointment.dto';
 
@@ -7,7 +7,7 @@ export class AppointmentController {
   constructor(private readonly appointmentService: AppointmentService) {}
 
   @Post()
-  createAppointment(appointmentData: CreateAppointmentDTO) {
+  createAppointment(@Body() appointmentData: CreateAppointmentDTO) {
     return this.appointmentService.createAppointment(appointmentData);
   }
 
