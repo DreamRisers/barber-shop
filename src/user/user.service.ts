@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Role, User } from './entities/user.entity';
@@ -18,7 +19,8 @@ export class UserService {
     const isPasswordValid = await bcrypt.compare(userLogin.password, user.password);
     if (!isPasswordValid) throw new NotFoundException('Usuario o contraseña incorrectos');
 
-    return user;
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   }
 
   async create(userData: CreateUserDto): Promise<User> {
