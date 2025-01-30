@@ -15,3 +15,11 @@ export class CreateUserDto {
   @IsOptional()
   profileImg?: string;
 }
+
+export class LoginUserDTO {
+  @IsString()
+  username: string;
+
+  @IsString()
+  password: string;
+}
