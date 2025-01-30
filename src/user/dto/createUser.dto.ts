@@ -1,4 +1,4 @@
-import { IsEnum, IsString } from 'class-validator';
+import { IsEnum, IsOptional, IsString } from 'class-validator';
 import { Role } from '../entities/user.entity';
 
 export class CreateUserDto {
@@ -12,5 +12,6 @@ export class CreateUserDto {
   role: Role;
 
   @IsString()
-  profileImg: string;
+  @IsOptional()
+  profileImg?: string;
 }

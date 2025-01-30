@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Param, ParseUUIDPipe, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Put } from '@nestjs/common';
 import { AppointmentService } from './appointment.service';
-import { CreateAppointmentDTO } from './dto/appointment.dto';
+import { CreateAppointmentDTO, UpdateAppointmentDTO } from './dto/appointment.dto';
 
 @Controller('appointment')
 export class AppointmentController {
@@ -19,5 +19,10 @@ export class AppointmentController {
   @Get(':id')
   getAppointmentById(@Param('id', ParseUUIDPipe) id: string) {
     return this.appointmentService.getAppointmentById(id);
+  }
+
+  @Put(':id')
+  updateAppointmentById(@Param('id', ParseUUIDPipe) id: string, @Body() appointmentData: UpdateAppointmentDTO) {
+    return this.appointmentService.updateAppointmentById(id, appointmentData);
   }
 }

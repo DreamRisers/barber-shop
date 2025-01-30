@@ -1,9 +1,11 @@
 import { Appointment } from 'src/appointment/entities/appointment.entity';
+import { Branch } from 'src/branch/entities/branch.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -27,10 +29,13 @@ export class Barber {
   profileImg: string;
 
   @OneToOne(() => User, (user) => user.role)
-  @JoinColumn()
+  @JoinColumn({ name: 'userId' })
   user: User;
 
   @OneToMany(() => Appointment, (appointment) => appointment.barber)
-  @JoinColumn()
   appointments: Appointment[];
+
+  @ManyToOne(() => Branch, (branch) => branch.barbers)
+  @JoinColumn({ name: 'branchId' })
+  branch: Branch;
 }

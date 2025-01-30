@@ -7,6 +7,7 @@ import { AppointmentModule } from './appointment/appointment.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import typeorm from './config/typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { BranchModule } from './branch/branch.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     UserModule,
     BarberModule,
     AppointmentModule,
+    BranchModule,
   ],
 })
 export class AppModule {}

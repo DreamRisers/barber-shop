@@ -2,6 +2,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { UserService } from './user/user.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,6 +18,9 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, documentFactory, {
     customSiteTitle: 'Barbershop API',
   });
+
+  const userService = app.get(UserService);
+  await userService.seeder();
 
   await app.listen(process.env.PORT ?? 3000);
 }

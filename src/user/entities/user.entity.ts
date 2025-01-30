@@ -18,13 +18,17 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   userId: string;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   username: string;
 
   @Column()
   password: string;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   profileImg: string;
 
   @Column({
