@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Role, User } from './entities/user.entity';
 import { Repository } from 'typeorm';
@@ -13,11 +13,10 @@ export class UserService {
 
   async login(userLogin: LoginUserDTO) {
     const user = await this.usersRepository.findOne({ where: { username: userLogin.username } });
+    if (!user) throw new NotFoundException('Usuario o contraseña incorrectos');
 
-    const hashedPassword = bcrypt.hashSync(userLogin.password, 10);
-    userLogin.password = hashedPassword;
-
-    if (!user || user.password !== userLogin.password) throw new ConflictException('Usuario o contraseña incorrectos');
+    const isPasswordValid = await bcrypt.compare(userLogin.password, user.password);
+    if (!isPasswordValid) throw new NotFoundException('Usuario o contraseña incorrectos');
 
     return user;
   }
@@ -30,7 +29,7 @@ export class UserService {
 
     if (userFound) throw new ConflictException(`El usuario ${userData.username} ya existe.`);
 
-    const hashedPassword = bcrypt.hashSync(userData.password, 10);
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
     userData.password = hashedPassword;
 
     const user = this.usersRepository.create(userData);
@@ -41,7 +40,7 @@ export class UserService {
 
   async seeder() {
     const adminUser = process.env.ADMIN_NAME ? process.env.ADMIN_NAME : 'admin';
-    const adminPassword = bcrypt.hashSync(process.env.ADMIN_PASSWORD ? process.env.ADMIN_PASSWORD : '1234', 10);
+    const adminPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD ? process.env.ADMIN_PASSWORD : '1234', 10);
 
     const userFound = await this.usersRepository.findOne({ where: { username: adminUser } });
     
