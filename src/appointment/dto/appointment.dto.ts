@@ -1,5 +1,5 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsString, IsInt, IsPositive, IsEnum, IsDate, MinLength, MaxLength, IsPhoneNumber } from 'class-validator';
+import { IsString, IsInt, IsPositive, IsEnum, IsDate, MinLength, MaxLength, IsPhoneNumber, IsUUID } from 'class-validator';
 import { AppointmentStatus, PaymentMethod } from "../entities/appointment.entity";
 
 export class CreateAppointmentDTO {
@@ -65,6 +65,12 @@ export class CreateAppointmentDTO {
     })
     @IsDate()
     date: Date;
+
+    @IsUUID()
+    barber: string;
+
+    @IsUUID()
+    branch: string;
 }
 
 export class UpdateAppointmentDTO extends PartialType(CreateAppointmentDTO) {}
